@@ -1,0 +1,83 @@
+/* 전체영역 */
+.SearchContainerMain {
+    background: #f5f5f5;
+    height: 2100px;
+    border-radius: 0 0 15px 15px;
+    position: relative;
+    transform: translate(0,-80px);
+}
+
+/* 검색결과 영역*/
+.SearchContainer1 {
+    background-color: #47a1ff;
+    width: 96%;
+    height: 2050px;
+    color: #fff;
+    margin-left: 2%;
+    position: relative;
+    border-radius: 15px;
+    transform: translate(0, 20px);
+}
+
+/* 사용자 검색어 */
+.SearchContainer1>span {
+    margin-left: 20px;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+/* 검색 필터 설정 영역*/
+.SearchTag {
+    display: flex;
+    border-bottom: 3px solid #08fd08;
+    justify-content: end;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+/* 검색 결과영역 */
+.SearchResult {
+    height: 1965px;
+}
+
+/* 검색 결과 객체의 제목 Title */
+.SresulT {
+    background-color: #cfdeff;
+    width: 1110px;
+    font-size: 30px;
+    color: black;
+    border-bottom: 2px solid #d9d9d9;
+    border-radius:  15px 15px 0 0;
+    margin: 20px 0 0 10px;
+    padding: 10px;
+}
+
+/* 검색 결과 객체의 내용 text */
+.Sresultt {
+    background-color: #f1f6ff;
+    width: 1110px;
+    height: 100px;
+    font-size: 24px;
+    color: #6e6e6e;
+    border-radius: 0 0 15px 15px;
+    margin: 0 0 5px 10px;
+    padding: 10px;
+}
+
+/*검색 페이지 이동 */
+.pageContainer {
+    width: 1150px;
+    height: 30px;
+    float: left;
+    position: relative;
+    transform: translate(0,100px);
+    text-align: center;
+    background-color: #6e00c7;
+}
+
+/*검색 페이지 이동 text*/
+.pageContainer>a{
+    font-size: 24px;
+    color: white;
+    display: inline-block;
+}

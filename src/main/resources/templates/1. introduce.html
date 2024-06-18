@@ -1,0 +1,122 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <title>SOLAR EMBASSY</title>
+
+    <!--    <link rel="stylesheet" href="/uikit/css/uikit.css">-->
+    <!--    <script src="/uikit/js/uikit.js"></script>-->
+    <!--    <script src="/uikit/js/uikit-icons.js"></script>-->
+
+    <style>
+        /* 항목 위치 및 영역*/
+        #SE_intro{
+            width: 1200px;
+            height: 80px;
+            position: relative;
+            transform: translate(-20px,-30px);
+        }
+
+        /*버튼 영역*/
+        #SE_intro>ul{
+            width: 1200px;
+            height: 50px;
+            position: relative;
+            transform: translate(20px,0px);
+            display: flex;
+        }
+
+        #SE_intro>ul>li{          /*각 항목*/
+            background-color: white;
+            width: 380px;
+            height: 50px;
+            float: left;
+            margin-left: 5px;
+            justify-content: space-between;
+            border-radius: 5px;
+            box-shadow: 1px 2px 2px 1px #888;
+        }
+
+        /*각 항목*/
+        #SE_intro>ul>li>a{
+            margin-top: 5px;
+            text-align: center;
+            color: black;
+            font-size: 25px;
+        }
+
+        #SE_intro>ul>li:hover{     /*hover*/
+            background-color: #7b86ff;
+        }
+
+        #SE_intro>ul>li>a:hover{ /*hover*/
+            text-align: center;
+            color: green;
+            font-size: 25px;
+        }
+
+        #SE_introIMG{
+            background-image: url("/img/intro.jpg");
+            border-radius: 5px;
+            transform: translate(25px,-50px);
+        }
+
+        /*footer 영역*/
+        #SE_footer{
+            background-color: Black;
+            width: 1920px;
+            height: 200px;
+            float: left;
+            position: relative;
+            transform: translate(0,2050px);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        #SE_footer a{
+            margin-top: 30px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+<div id="SE_container">
+    <th:block th:insert="/mainImg"></th:block>
+    <div id="SE_topline">
+        <!--검색과 로그인 + 왼쪽 사이드-->
+        <th:block th:insert="/searchAndLogin"></th:block>
+        <!--검색과 로그인 end-->
+        <div id="SE_contents" style="z-index:2">
+            <!--메뉴 + 오른쪽 사이드-->
+            <th:block th:insert="/menuAndAside"></th:block>
+            <!--메뉴 end-->
+            <!--여기부터********************************************************************************************-->
+            <div id="SE_intro">                      <!-- 분류 목록-->
+                <ul>
+                    <li><a class="itr1" href="/introduce">1. 서비스 소개</a></li>
+                    <li><a class="itr1" href="/user_rules">2. 이용약관</a></li>
+                    <li><a class="itr1" href="/personal">3. 개인정보 취급방침</a></li>
+                </ul>
+            </div>
+            <div id="SE_introIMG" style="width: 1150px; height:1780px" ></div>
+
+            <!--여기까지********************************************************************************************-->
+
+        </div>
+        <footer id="SE_footer">
+            <br>
+            <p><h3><a href="/introduce">서비스 소개</a> / <a href="/user_rules">이용약관</a> / <a href="/personal">개인정보 취급방침</a> / <a href="https://open.kakao.com/o/sImhIr4e">비즈니스 문의</a> / <a href="https://cafe.naver.com/solarembassy">SNS</a> / <a href="mailto:mall@solarembassy.com">이메일</a> / <a href="/customer_center">고객센터</a></h3></p>
+            <p><h3>Copyright (c) <a href="https://github.com/hykim-king/SOLAR_EMBASSY">www.solarembassy.com</a> All rights reserved.</h3></p>
+            <p>위 내용에 대한 저작권 및 법적 책임은 자료제공사 또는 글쓴이에 있으며 SOLAR EMBASSY의 입장과 다를 수 있습니다.<img src="/img/loadcat.gif"></a></p>
+        </footer>
+</body>
+</html>

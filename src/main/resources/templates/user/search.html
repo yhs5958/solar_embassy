@@ -1,0 +1,108 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>SOLAR EMBASSY</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/search.css">
+
+</head>
+<body>
+<div id="SE_container">
+  <th:block th:insert="/mainImg"></th:block>
+  <div id="SE_topline">
+    <!--검색과 로그인 + 왼쪽 사이드-->
+    <th:block th:insert="/searchAndLogin"></th:block>
+    <!--검색과 로그인 end-->
+    <div id="SE_contents" style="z-index:2">
+      <!--메뉴 + 오른쪽 사이드-->
+      <th:block th:insert="/menuAndAside"></th:block>
+      <!--메뉴 end-->
+      <section>
+        <div class="SearchContainerMain">
+          <div class="SearchContainer1">
+            <span class="SearchWord"> "{% searchword %}"에 대한 검색 결과</span>
+            <div class="SearchTag">
+              <form action="" method="POST">
+                <input type="checkbox" name="ages" id="today" value="">
+                <label for="today">최신날짜순</label>
+                <input type="checkbox" name="ages" id="popular" value="">
+                <label for="popular">인기순</label>
+                <input type="checkbox" name="ages" id="manner" value="">
+                <label for="manner">추천순</label>
+              </form>
+            </div>
+            <div class="SearchResult">
+              <!-- 이부분은 for문 돌리셔야 할 것 같아요 -->
+
+              <ul>
+                <div>
+                  <li class="SresulT">{% search1 %} 검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent1 %}검색결과 내용</p>
+                  </div>
+                </div>
+                <div>
+                  <li class="SresulT">{% search2 %}검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent2 %}검색결과 내용</p>
+                  </div>
+                </div>
+                <div>
+                  <li class="SresulT">{% search3 %}검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent3 %}검색결과 내용</p>
+                  </div>
+                </div>
+                <div>
+                  <li class="SresulT">{% search4 %}검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent4 %}검색결과 내용</p>
+                  </div>
+                </div>
+                <div>
+                  <li class="SresulT">{% search5 %}검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent5 %}검색결과 내용</p>
+                  </div>
+                </div>
+                <div>
+                  <li class="SresulT">{% search6 %}검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent6 %}검색결과 내용</p>
+                  </div>
+                </div>
+                <div>
+                  <li class="SresulT">{% search7 %}검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent7 %}검색결과 내용</p>
+                  </div>
+                </div>
+                <div>
+                  <li class="SresulT">{% search8 %}검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent8 %}검색결과 내용</p>
+                  </div>
+                </div>
+                <div>
+                  <li class="SresulT">{% search9 %}검색결과 제목</li>
+                  <div class="Sresultt">
+                    <p>{% searchContent9 %}검색결과 내용</p>
+                  </div>
+                </div>
+              </ul>
+              <div class="pageContainer">
+                <a href="">◀ </a><a href="">1</a>, <a href="">2</a>, <a href="">3</a>,
+                <a href="">4</a>, <a href="">5</a>, <a href="">6</a><a href=""> ▶</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <th:block th:insert="/footer"></th:block>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

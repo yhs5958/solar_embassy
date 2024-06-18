@@ -1,0 +1,72 @@
+<!-- xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{/layout}"> -->
+
+<html lang="ko" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <!--원본 css-->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/com_detail.css">
+    <title th:text="${company.getComName()}"></title>
+</head>
+<body>
+<div id="SE_container">
+
+    <th:block th:insert="/mainImg"></th:block>
+    <div id="SE_topline">
+        <!--검색과 로그인 + 왼쪽 사이드-->
+        <th:block th:insert="/searchAndLogin"></th:block>
+        <!--검색과 로그인 end-->
+        <div id="SE_contents" style="z-index:2;height: max-content;">
+            <!--메뉴 + 오른쪽 사이드-->
+            <th:block th:insert="/menuAndAside"></th:block>
+            <!--메뉴 end-->
+            <th:block th:insert="/galaxy/autoGalaxyNavbar"></th:block>
+
+            <div id="content2">
+                <div id="photo">
+                    <img th:src="${company.getComImgName()}" alt="" src="">
+                </div>
+                <div id="inform">
+                    기업명 : <span th:text="${company.getComName()}"></span> <br>
+                    소재지 : <span th:text="${company.getAddress()}"></span> <br>
+                    모기업 : <span th:text="${company.getParentName()}"></span> <br>
+                    설립일 : <span th:text="${#dates.format(company.getFoundDate(),'yyyy-MM-dd')}"></span> <br>
+                    설립자 : <span th:text="${company.getFounders()}"></span> <br>
+                    CEO : <span th:text="${company.getCeo()}"></span> <br>
+                    업종 : <span th:text="${company.getIndustries()}"></span> <br>
+                    슬로건 : <span th:text="${company.getSlogan()}"></span> <br>
+                    <button type="button" th:onclick="window.open([[@{'{link}'(link=${company.link})}]])"><span>사이트</span></button>
+                </div>
+            </div>
+
+            <div id="content3">
+                <div th:text="${company.getContent()}"></div>
+            </div>
+
+            <section id="SE_contents2">
+                <div>
+                    <a href="https://kartdrift.nexon.com/" target="_blank"><img src="/img/autopedia/banner1.png" alt=""></a>
+                </div>
+            </section>
+
+            <section id="SE_contents3">
+                <div>
+                    <a href="https://lp.jetbrains.com/academy/learn-kotlin/" target="_blank"><img src="/img/autopedia/banner2.png" alt=""></a>
+                </div>
+            </section>
+
+            <th:block th:insert="/footer"></th:block>
+        </div>
+    </div>
+</div>
+</body>
+</html>

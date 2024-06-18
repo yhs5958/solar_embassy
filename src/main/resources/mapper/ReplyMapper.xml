@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.community.solar_embassy.mapper.ReplyMapper">
+
+    <resultMap id="BaseResultMap" type="com.community.solar_embassy.dto.Reply">
+        <id property="replyNo" column="replyNo" jdbcType="INTEGER"/>
+        <id property="postTime" column="postTime" jdbcType="TIMESTAMP"/>
+        <result property="boardNo" column="boardNo" jdbcType="INTEGER"/>
+        <result property="userId" column="userId" jdbcType="VARCHAR"/>
+        <result property="fkReplyNo" column="fkReplyNo" jdbcType="VARCHAR"/>
+        <result property="contents" column="contents" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="likes" column="likes" jdbcType="INTEGER"/>
+        <result property="dislikes" column="dislikes" jdbcType="INTEGER"/>
+        <result property="state" column="state" jdbcType="INTEGER"/>
+        <result property="imgPath" column="imgPath" jdbcType="VARCHAR"/>
+        <result property="originImgName" column="originImgName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        replyNo,postTime,boardNo,
+        userId,fkReplyNo,contents,
+        updateTime,likes,dislikes,
+        state,imgPath,originImgName
+    </sql>
+    <insert id="insertReply" parameterType="Reply" useGeneratedKeys="true" keyProperty="replyNo">
+        INSERT INTO reply(boardNo, userId, fkReplyNo, contents, imgPath, originImgName,postTime)
+        VALUES (#{boardNo}, #{userId}, #{fkReplyNo}, #{contents}, #{imgPath}, #{originImgName},current_timestamp)
+    </insert>
+    <update id="updateReply">
+        UPDATE reply
+        SET contents=#{contents},
+            imgPath=#{imgPath},
+            originImgName=#{originImgName},
+            updateTime=CURRENT_TIMESTAMP
+        WHERE replyNo = #{replyNo}
+    </update>
+    <update id="makeBlankReply">
+        UPDATE reply
+        SET userId=1234,
+            contents=null,
+            imgPath=null,
+            originImgName=null,
+            updateTime=CURRENT_TIMESTAMP,
+            likes=null,
+            dislikes=null,
+            state=-1
+        WHERE replyNo = #{replyNo}
+    </update>
+    <delete id="deleteById">
+        DELETE
+        FROM reply
+        WHERE replyNo = #{replyNo}
+    </delete>
+    <select id="findByBoardNo" resultType="com.community.solar_embassy.dto.Reply">
+        SELECT *
+        FROM reply
+        WHERE boardNo = #{boardNo}
+    </select>
+    <select id="findAll" resultType="com.community.solar_embassy.dto.Reply">
+        SELECT *
+        FROM reply
+    </select>
+    <select id="findAllByFkReplyNo" resultType="com.community.solar_embassy.dto.Reply">
+        SELECT * FROM reply WHERE fkReplyNo=#{replyNo}
+    </select>
+    <select id="findById" resultType="com.community.solar_embassy.dto.Reply">
+        SELECT * FROM reply WHERE replyNo=#{replyNo}
+    </select>
+    <select id="findByUserIdPaging" resultType="com.community.solar_embassy.dto.Reply">
+        SELECT * FROM reply WHERE userId= #{userId}
+    </select>
+    <select id="countByUserId" resultType="java.lang.Integer">
+
+    </select>
+    <select id="countByBoardNo" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM reply WHERE boardNo=#{boardNo}
+    </select>
+    <select id="findByBoardNoPaging" resultType="com.community.solar_embassy.dto.Reply">
+        SELECT * FROM reply
+        WHERE boardNo=#{boardNo}
+        AND fkReplyNo IS NULL
+    </select>
+</mapper>

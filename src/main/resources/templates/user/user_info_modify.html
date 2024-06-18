@@ -1,0 +1,122 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <!--원본 css-->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/user_info_modify.css">
+    <title>SOLAR EMBASSY</title>
+</head>
+<body>
+<div id="SE_container">
+    <th:block th:insert="/mainImg"></th:block>
+
+    <div id="SE_topline">
+        <!--검색과 로그인 + 왼쪽 사이드-->
+        <th:block th:insert="/searchAndLogin"></th:block>
+        <!--검색과 로그인 end-->
+        <div id="SE_contents" style="z-index:2">
+            <!--메뉴 + 오른쪽 사이드-->
+            <th:block th:insert="/menuAndAside"></th:block>
+            <!--메뉴 end-->
+
+            <!--여기부터-->
+            <div id="user_info">
+                <div id="user_info_btn">
+                    <div id="user_info_btn1">
+                        <button type="button" class="btn btn-outline-dark col-12 mt-5 ms-4 fs-3 " style="background-color: #d1d1d1">회원 정보 수정</button>
+                    </div>
+                    <div id="user_info_btn2">
+                        <button type="button" class="btn btn-outline-dark col-12 mt-5 ms-4 fs-3 " style="background-color: #d1d1d1"
+                                onclick="location.href='/user/user_black.do'">차단 목록 관리</button>
+                    </div>
+                    <div id="user_info_btn3">
+                        <button type="button" class="btn btn-outline-danger col-12 mt-5 ms-4 fs-3" style="background-color: #a52834"
+                                onclick="location.href='/user/withdrawal.do'">회원 탈퇴
+                        </button>
+                    </div>
+                </div>
+                <div id="user_info_bgc1">
+                    <div id="user_info_bgc2">
+                        <form id="user_info_modify">
+                            <input type="hidden" name="userId" th:value="${session.loginUser.userId}">
+                            <div>
+                                <div class="input-group input-group-lg my-3">
+                                    <span class="input-group-text text-white d-inline-block lh-lg text-center bg-gradient fs-4"
+                                          style="background-color:#2B2851;width: 110px;">닉네임</span>
+                                    <input type="text" class="form-control fs-4" aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default"
+                                           th:value="${session.loginUser.nickname}" name="nickname">
+                                    <button type="submit" class="btn btn-lg fs-4 text-white"
+                                            style="background-color:#2B2851;" formmethod="post"
+                                            formaction="/user/nickCheck">중복체크
+                                    </button>
+                                </div>
+                                <!--                                <div class="text-start" >-->
+                                <!--                                    <span th:if="${param.nickCheck==1}">중복된 닉네임 입니다.</span>                                                                                        -->
+                                <!--                                </div>-->
+                                <div class="input-group input-group-lg my-3">
+                                    <span class="input-group-text text-white d-inline-block lh-lg text-center bg-gradient fs-4"
+                                          style="background-color:#2B2851;width: 110px">이메일</span>
+                                    <input type="email" class="form-control" th:value="${session.loginUser.email}"
+                                           aria-label="Username" name="email">
+                                    <button type="submit" class="btn btn-lg fs-4 text-white"
+                                            style="background-color:#2B2851;" formmethod="post">인증확인
+                                    </button>
+                                </div>
+                                <div class="input-group input-group-lg my-3">
+                                    <span class="input-group-text text-white d-inline-block lh-lg text-center bg-gradient fs-4"
+                                          style="background-color:#2B2851;width: 110px">집전화</span>
+                                    <input type="tel" class="form-control" th:value="${session.loginUser.hp}" name="hp">
+                                </div>
+                                <div class="input-group input-group-lg my-3">
+                                    <span class="input-group-text text-white d-inline-block lh-lg text-center bg-gradient fs-4"
+                                          style="background-color:#2B2851;width: 110px">휴대폰</span>
+                                    <input type="tel" class="form-control" th:value="${session.loginUser.tel}"
+                                           name="tel">
+                                    <button type="submit" class="btn btn-lg fs-4 text-white"
+                                            style="background-color:#2B2851;" formmethod="post">인증확인
+                                    </button>
+                                </div>
+                                <input type="hidden" name="adminId" th:value="${session.loginUser.adminId}">
+                                <input type="hidden" name="profileImgNo" th:value="${session.loginUser.profileImgNo}">
+                                <div class="input-group input-group-lg my-3">
+                                    <span class="input-group-text text-white d-inline-block lh-lg text-center bg-gradient fs-4"
+                                          style="background-color:#2B2851;width: 110px">생년월일</span>
+                                    <input type="date" class="form-control" name="birth"
+                                           th:value="${#calendars.format(session.loginUser.birth, 'yyyy-MM-dd')}">
+                                </div>
+                                <div class="input-group input-group-lg my-3">
+                                    <input type="password" class="form-control rounded" placeholder="새 비밀번호"
+                                           name="passwords">
+                                </div>
+                                <div class="input-group input-group-lg my-3">
+                                    <input type="password" class="form-control rounded" placeholder="비밀번호 확인"
+                                           name="passwords_C">
+                                </div>
+
+                                <button type="submit" class="btn btn-secondary btn-lg mt-5" formmethod="post">확인
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-lg mt-5 ms-5"
+                                        formaction="/user/my_page.do">취소
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <!--여기까지-->
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

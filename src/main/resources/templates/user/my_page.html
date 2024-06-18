@@ -1,0 +1,126 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <!--원본 css-->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/my_page.css">
+    <title>SOLAR EMBASSY</title>
+</head>
+<body>
+<div id="SE_container">
+    <th:block th:insert="/mainImg"></th:block>
+
+    <div id="SE_topline">
+        <!--검색과 로그인 + 왼쪽 사이드-->
+        <th:block th:insert="/searchAndLogin"></th:block>
+        <!--검색과 로그인 end-->
+        <div id="SE_contents" style="z-index:2">
+            <!--메뉴 + 오른쪽 사이드-->
+            <th:block th:insert="/menuAndAside"></th:block>
+            <!--메뉴 end-->
+
+            <!--여기부터-->
+            <div id="my_page">
+                <div id="my_pageT">My　Page</div>
+                <div id="my_page_btn">
+                    <div>
+                        <button type="button" class="btn btn-outline-dark col-12 mx-auto mt-5 ms-4 fs-3">전체 보기</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-dark col-12 mx-auto mt-2 ms-4 fs-3">내가 쓴 글</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-dark col-12 mx-auto mt-2 ms-4 fs-3">내가 쓴 댓글
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-dark col-12 mx-auto mt-2 ms-4 fs-3">좋아요 한 글
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-dark col-12 mx-auto mt-2 ms-4 fs-3"
+                                onclick="location.href='/user/pw_check.do'">내 정보 수정
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-dark col-12 mx-auto mt-2 ms-4 fs-3"
+                                onclick="location.href='/user/user_black.do'">차단 목록
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-danger col-12 mx-auto mt-2 ms-4 fs-3"
+                                onclick="location.href='/user/withdrawal.do'">회원 탈퇴
+                        </button>
+                    </div>
+                </div>
+
+                <div id="my_page_table">
+                    <table class="table table-light">
+                        <colgroup>
+                            <col style="width:17%">
+                            <col style="width:12%">
+                            <col style="width:35%">
+                            <col style="width:14%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                        </colgroup>
+                        <h4><strong>내가 쓴 글</strong></h4>
+                        <thead class="table-primary">
+                        <tr>
+                            <th scope="col" class="text-center" style="background-color: #aaaaff">갤럭시 이름</th>
+                            <th scope="col" class="text-center" style="background-color: #aaaaff">글 번호</th>
+                            <th scope="col" class="text-start" style="background-color: #aaaaff">제목(댓글수)</th>
+                            <th scope="col" class="text-center" style="background-color: #aaaaff">작성 일자</th>
+                            <th scope="col" class="text-center" style="background-color: #aaaaff">조회수</th>
+                            <th scope="col" class="text-center" style="background-color: #aaaaff">추천수</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="myBoard:${myBoards}">
+                            <th class="text-center" th:text="${myBoard.galaxy.galName}"></th>
+                            <td class="text-center" th:text="${myBoard.boardNo}"></td>
+                            <td class="text-start" th:text="${myBoard.title}" style="cursor: pointer"
+                                th:onclick="location.href=[[@{'/board/boardDetail?boardNo={boardNo}' (boardNo=${myBoard.boardNo})}]]"></td>
+                            <td class="text-center" th:text="${#calendars.format(myBoard.postTime, 'yyyy-MM-dd')}"></td>
+                            <td class="text-center" th:text="${myBoard.views}"></td>
+                            <td class="text-center" th:text="${myBoard.likes}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-light">
+                        <colgroup>
+                            <col style="width:30%">
+                            <col style="width:40%">
+                            <col style="width:30%">
+                        </colgroup>
+                        <h4><strong>내가 쓴 댓글</strong></h4>
+                        <thead class="table-primary">
+                        <tr>
+                            <th scope="col" class="text-center" style="background-color: #aaaaff">글 번호</th>
+                            <th scope="col" class="text-start" style="background-color: #aaaaff">제목(댓글수)</th>
+                            <th scope="col" class="text-center" style="background-color: #aaaaff">작성 일자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${myReplyList!=null}" th:each="myReply:${myReplyList}">
+                            <td class="text-center" th:text="${myReply.replyNo}"></td>
+                            <td class="text-start" th:text="${myReply.contents}" th:onclick="location.href=[[@{'/board/boardDetail?boardNo={boardNo}' (boardNo=${myReply.boardNo})}]]"></td>
+                            <td class="text-center" th:text="${#calendars.format(myReply.postTime,'yyyy-MM-DD hh:mm:ss')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--여기까지-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+#SE_contents #content2 {
+    background-color: white;
+    width: 1200px;
+    height: max-content;
+    font-size: 20px;
+    margin-top: 40px;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 0 15px dimgray;
+}
+
+#SE_contents #content2 #photo {
+    float: left;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+#SE_contents #content2 #photo img {
+    width: 350px;
+    height: 200px;
+    object-fit: contain;
+}
+
+#SE_contents #content2 #inform {
+    margin-left: 150px;
+}
+
+#SE_contents #content2 #inform button {
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #a156ff, #23a6d5);
+    margin-top: 10px;
+    width: 350px;
+    border-style: none;
+}
+
+#SE_contents #content2 #inform button:hover{
+    text-decoration-line: blink;
+    color: #fff;
+    background: linear-gradient(-45deg, #23a6d5, #a156ff);
+}
+
+#SE_contents #content3 {
+    width: 1200px;
+    background-color: #fff;
+    height: max-content;
+    margin-top: 20px;
+    display: flex;
+    font-size: 16px;
+    box-shadow: 0 0 15px dimgray;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#SE_contents2{
+    width: 360px;
+    height: max-content;
+    position: absolute;
+    transform: translate(-360px, -800px);
+}
+
+#SE_contents2 div{
+    width:340px;
+    height: 800px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    margin: 300px 10px 0 10px;
+}
+
+#SE_contents2 div a img {
+    width: 340px;
+    height: 800px;
+    border-radius: 10px;
+}
+
+#SE_contents3{
+    width: 360px;
+    height: max-content;
+    position: absolute;
+    transform: translate(1200px,-800px);
+}
+
+#SE_contents3 div{
+    width:340px;
+    height: 800px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    position: absolute;
+    margin: 300px 10px 0 10px;
+}
+
+#SE_contents3 div a img {
+    width: 340px;
+    height: 800px;
+    border-radius: 10px;
+}
